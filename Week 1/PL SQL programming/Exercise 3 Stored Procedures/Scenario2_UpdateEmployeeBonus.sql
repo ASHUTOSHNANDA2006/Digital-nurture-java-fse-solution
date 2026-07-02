@@ -1,0 +1,26 @@
+SET SERVEROUTPUT ON;
+
+CREATE OR REPLACE PROCEDURE UpdateEmployeeBonus(
+
+    p_DepartmentID IN NUMBER,
+    p_BonusPercent IN NUMBER
+
+)
+AS
+BEGIN
+
+    UPDATE Employees
+    SET Salary = Salary + (Salary * p_BonusPercent / 100)
+    WHERE DepartmentID = p_DepartmentID;
+
+    COMMIT;
+
+    DBMS_OUTPUT.PUT_LINE('Employee bonus updated successfully.');
+
+END;
+/
+
+BEGIN
+    UpdateEmployeeBonus(10,10);
+END;
+/
